@@ -569,12 +569,18 @@ class Expression implements \ArrayAccess, \IteratorAggregate
     /**
      * @param string|int|bool|null $v
      */
-    private function getCastValue($v): ?string
+    private function getCastValue($v)
     {
         if ($v === null) {
             return null;
         } elseif (is_bool($v)) {
             return $v ? '1' : '0';
+        } elseif (is_int($v)) {
+            return $v;
+        } elseif (is_float($v)){
+            return $v;
+        } elseif (is_double($v)){
+            return $v;
         }
 
         return (string) $v;
